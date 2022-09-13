@@ -1,0 +1,85 @@
+Reference learning -> https://www.youtube.com/watch?v=b9eMGE7QtTk
+
+Creates template react app in the current directory
+npx create-react-app ./
+
+Run the react app in localhost 3000
+npm start
+
+package.json
+Contains the dependencies and their version
+
+node_modules
+Contains the packages
+
+src
+Contains the source code.
+
+public -> index.html
+Remove the unnecessary comments to get the simple html with div id="root"
+All the code is injected within this div -> root
+
+src -> index.js
+This is the starting point of application
+ReactDOM renders the application <App/> to the actual DOM (document)
+
+src -> App.js
+Contains the App functional component that returns the JSX to be rendered.
+
+In JSX, className is used instead of the class in html
+within the braces {}, we can use any expressions or variables.
+Example <img src={variable} className="App-logo" alt="logo"/>
+
+To render multiple elements, need to enclose them with react fragment 
+example:
+{bool_variable ? (
+    <>
+        <h1> {name} </h1>
+    </>
+    ) : (
+        <>
+            <h1>test</h1>
+            <h2>test2</h2>
+        </>
+    )}
+
+props allows us to pass attributes to each component
+Example:
+const Person = (props) => {
+    return(
+        <h1> Name: {props.name} </h1>
+        <h1> Last Name: {props.lastname} </h2>
+        <h1> Age: {props.age} </h2>
+    )
+}
+When using the component, use as follows
+<Person name={"Karthick"} lastname={'S'} age={28}/>
+<Person name={"John"} lastname={'S'} age={30}/>
+
+React States:
+JS object that is used to retain information of current state of a component
+
+Need to import the hook from {useState}
+import {useState} from 'react'
+
+Example: Usage of Counters
+const App = () => {
+    const [counter, setCounter] = useState(0); // any function with use prefix is called a hook in react.
+    // setCounter is a function
+    // 0 is the initial value of the state
+    return(
+        <div className="App">
+            <button onclick={() => setCounter((prevCount) => prevCount-1)}> - <button> // Minus button
+            <h1> 0 <h1>         // Current Value
+            <button onclick={() => setCounter((prevCount) => prevCount+1)}> + <button> //Plus button
+        </div>
+    );
+}
+
+
+useEffect:
+    useEffect(() => {
+      alert("counter changed to " + counter); // First parameter is a function to run
+    },
+    [counter] // Second parameters is a dependency list, whenever counter changes, it will run the alert function
+    )
